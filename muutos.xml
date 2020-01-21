@@ -1,0 +1,147 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="vagrant (generated)" id="1579605662994-1">
+        <createSequence cacheSize="0" incrementBy="10" maxValue="9000" sequenceName="DEPT_SEQ" startValue="60"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605662994-2">
+        <createSequence cacheSize="0" incrementBy="10" maxValue="90000" sequenceName="EMP_SEQ" startValue="8020"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605662994-3">
+        <createTable tableName="DEPT">
+            <column name="DEPTNO" type="NUMBER(2, 0)">
+                <constraints primaryKey="true" primaryKeyName="DEPT_PK"/>
+            </column>
+            <column name="DNAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="LOC" type="VARCHAR2(50 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605662994-4">
+        <createTable tableName="EMP">
+            <column name="EMPNO" type="NUMBER(4, 0)">
+                <constraints primaryKey="true" primaryKeyName="EMP_PK"/>
+            </column>
+            <column name="ENAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="JOB" type="VARCHAR2(50 BYTE)"/>
+            <column name="MGR" type="NUMBER(4, 0)"/>
+            <column name="HIREDATE" type="date"/>
+            <column name="SAL" type="NUMBER(7, 2)"/>
+            <column name="COMM" type="NUMBER(7, 2)"/>
+            <column name="DEPTNO" type="NUMBER(2, 0)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605662994-5">
+        <createTable tableName="TESTI">
+            <column name="ID" type="NUMBER">
+                <constraints primaryKey="true" primaryKeyName="TESTI_CON"/>
+            </column>
+            <column name="NIMI" type="VARCHAR2(50 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605662994-6">
+        <createIndex indexName="EMP_1" tableName="EMP">
+            <column name="MGR"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605662994-7">
+        <createIndex indexName="EMP_2" tableName="EMP">
+            <column name="DEPTNO"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605662994-8">
+        <addForeignKeyConstraint baseColumnNames="DEPTNO" baseTableName="EMP" constraintName="EMP_DEPT_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="DEPTNO" referencedTableName="DEPT" validate="true"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605662994-9">
+        <addForeignKeyConstraint baseColumnNames="MGR" baseTableName="EMP" constraintName="EMP_MGR_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="EMPNO" referencedTableName="EMP" validate="true"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605662994-10">
+        <createView fullDefinition="true" viewName="EMP_DEPT_V">CREATE OR REPLACE FORCE VIEW EMP_DEPT_V (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, DNAME, LOC) AS select e.empno
+,      e.ename
+,      e.job
+,      (select m.ename from emp m where e.mgr = m.empno) mgr
+,      e.hiredate
+,      e.sal
+,      e.comm
+,      d.deptno
+,      d.dname
+,      d.loc
+from emp e
+,    dept d
+where e.deptno = d.deptno (+)</createView>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-1">
+        <createSequence cacheSize="0" incrementBy="10" maxValue="9000" sequenceName="DEPT_SEQ" startValue="60"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-2">
+        <createSequence cacheSize="0" incrementBy="10" maxValue="90000" sequenceName="EMP_SEQ" startValue="8020"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-3">
+        <createTable tableName="DEPT">
+            <column name="DEPTNO" type="NUMBER(2, 0)">
+                <constraints primaryKey="true" primaryKeyName="DEPT_PK"/>
+            </column>
+            <column name="DNAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="LOC" type="VARCHAR2(50 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-4">
+        <createTable tableName="EMP">
+            <column name="EMPNO" type="NUMBER(4, 0)">
+                <constraints primaryKey="true" primaryKeyName="EMP_PK"/>
+            </column>
+            <column name="ENAME" type="VARCHAR2(50 BYTE)"/>
+            <column name="JOB" type="VARCHAR2(50 BYTE)"/>
+            <column name="MGR" type="NUMBER(4, 0)"/>
+            <column name="HIREDATE" type="date"/>
+            <column name="SAL" type="NUMBER(7, 2)"/>
+            <column name="COMM" type="NUMBER(7, 2)"/>
+            <column name="DEPTNO" type="NUMBER(2, 0)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-5">
+        <createTable tableName="EURO">
+            <column name="ID" type="NUMBER(3, 0)">
+                <constraints primaryKey="true" primaryKeyName="EURO_PK"/>
+            </column>
+            <column name="MAA" type="VARCHAR2(20 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-6">
+        <createTable tableName="TESTI">
+            <column name="ID" type="NUMBER">
+                <constraints primaryKey="true" primaryKeyName="TESTI_CON"/>
+            </column>
+            <column name="NIMI" type="VARCHAR2(50 BYTE)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-7">
+        <createIndex indexName="EMP_1" tableName="EMP">
+            <column name="MGR"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-8">
+        <createIndex indexName="EMP_2" tableName="EMP">
+            <column name="DEPTNO"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-9">
+        <addForeignKeyConstraint baseColumnNames="DEPTNO" baseTableName="EMP" constraintName="EMP_DEPT_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="DEPTNO" referencedTableName="DEPT" validate="true"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-10">
+        <addForeignKeyConstraint baseColumnNames="MGR" baseTableName="EMP" constraintName="EMP_MGR_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="EMPNO" referencedTableName="EMP" validate="true"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605741637-11">
+        <createView fullDefinition="true" viewName="EMP_DEPT_V">CREATE OR REPLACE FORCE VIEW EMP_DEPT_V (EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, DNAME, LOC) AS select e.empno
+,      e.ename
+,      e.job
+,      (select m.ename from emp m where e.mgr = m.empno) mgr
+,      e.hiredate
+,      e.sal
+,      e.comm
+,      d.deptno
+,      d.dname
+,      d.loc
+from emp e
+,    dept d
+where e.deptno = d.deptno (+)</createView>
+    </changeSet>
+</databaseChangeLog>

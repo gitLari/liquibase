@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="vagrant (generated)" id="1579605325191-1">
+        <dropForeignKeyConstraint baseTableName="EMP" constraintName="EMP_DEPT_FK"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605325191-2">
+        <dropForeignKeyConstraint baseTableName="EMP" constraintName="EMP_MGR_FK"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605325191-3">
+        <dropView viewName="EMP_DEPT_V"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605325191-4">
+        <dropTable tableName="DEPT"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605325191-5">
+        <dropTable tableName="EMP"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605325191-6">
+        <dropTable tableName="TESTI"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605325191-7">
+        <dropSequence sequenceName="DEPT_SEQ"/>
+    </changeSet>
+    <changeSet author="vagrant (generated)" id="1579605325191-8">
+        <dropSequence sequenceName="EMP_SEQ"/>
+    </changeSet>
+</databaseChangeLog>
